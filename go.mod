@@ -1,4 +1,4 @@
-module github.com/shipengqi/kube
+module github.com/arashicage/kube
 
 go 1.17
 

@@ -102,7 +102,9 @@ func (c *Client) RestConfig() (*rest.Config, error) {
 	if c.proxy != nil {
 		cfg.Proxy = c.proxy
 	}
-	cfg.Timeout = c.cfg.Timeout()
+	if c.cfg != nil {
+		cfg.Timeout = c.cfg.Timeout()
+	}
 
 	return cfg, nil
 }

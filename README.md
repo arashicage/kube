@@ -2,10 +2,10 @@
 
 A simple Kubernetes client, based on [client-go](https://github.com/kubernetes/client-go).
 
-[![Test](https://github.com/shipengqi/kube/actions/workflows/go.yml/badge.svg)](https://github.com/shipengqi/kube/actions/workflows/go.yml)
-[![codecov](https://codecov.io/gh/shipengqi/kube/branch/main/graph/badge.svg?token=0KSRZKV4C8)](https://codecov.io/gh/shipengqi/kube)
-[![Release](https://img.shields.io/github/release/shipengqi/kube.svg)](https://github.com/shipengqi/kube/releases)
-[![License](https://img.shields.io/github/license/shipengqi/kube)](https://github.com/shipengqi/kube/blob/main/LICENSE)
+[![Test](https://github.com/arashicage/kube/actions/workflows/go.yml/badge.svg)](https://github.com/arashicage/kube/actions/workflows/go.yml)
+[![codecov](https://codecov.io/gh/arashicage/kube/branch/main/graph/badge.svg?token=0KSRZKV4C8)](https://codecov.io/gh/arashicage/kube)
+[![Release](https://img.shields.io/github/release/arashicage/kube.svg)](https://github.com/arashicage/kube/releases)
+[![License](https://img.shields.io/github/license/arashicage/kube)](https://github.com/arashicage/kube/blob/main/LICENSE)
 
 ## Quick Start
 
@@ -18,14 +18,14 @@ import (
 
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/cli-runtime/pkg/genericclioptions"
-	
-	"github.com/shipengqi/kube"
-	
+
+	"github.com/arashicage/kube"
+
 )
 
 func main() {
 	kubeconfig := "testdata/config"
-	
+
 	flags := genericclioptions.NewConfigFlags(false)
 	flags.KubeConfig = &kubeconfig
 	cfg := kube.NewConfig(flags)
@@ -34,15 +34,15 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	
+
 	// get a configmap named "configmapname"
 	cm, err := k8s.CoreV1().ConfigMaps("default").Get(context.TODO(), "configmapname", metav1.GetOptions{})
 	log.Println(cm.Data)
-	
-	// or 
+
+	// or
 	cm, err = cli.GetConfigMap(context.TODO(), "default", "configmapname")
 	log.Println(cm.Data)
-	
+
 	// apply file, is like "kubectl apply -f testdata/content-apply.yaml"
 	err = cli.Apply([]string{"testdata/content-apply.yaml"})
 	if err != nil {
@@ -61,7 +61,7 @@ func main() {
 
 ## Documentation
 
-You can find the docs at [go docs](https://pkg.go.dev/github.com/shipengqi/kube).
+You can find the docs at [go docs](https://pkg.go.dev/github.com/arashicage/kube).
 
 ## Test
 
